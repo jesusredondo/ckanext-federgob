@@ -50,7 +50,7 @@ Install the plugin:
     cd ckanext-federatedatosgob
     sudo python setup.py develop
 
-Make sure to add federatedatosgob to ckan.plugins in your config file.
+Restart Apache and make sure to add federatedatosgob to ckan.plugins in your config file.
 
 
 ## How to configure federatedatosgob with the Federator?
