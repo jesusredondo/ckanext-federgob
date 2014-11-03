@@ -102,4 +102,4 @@ The federator must read the metadata that is generated in the url: {-URL-CATALOG
 
 
 ## License
-This plugin is published uuder the ]GNU Affero General Public License (AGPL) v3.0](http://www.gnu.org/licenses/agpl-3.0.html)
+This plugin is published uuder the [GNU Affero General Public License (AGPL) v3.0](http://www.gnu.org/licenses/agpl-3.0.html)
