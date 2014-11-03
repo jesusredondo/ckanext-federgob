@@ -101,5 +101,8 @@ Additionally, federatedatosgob includes a default method to configure [Cron](htt
 The federator must read the metadata that is generated in the url: {-URL-CATALOG-}/federator.rdf. Follow the tutorials from datos.gob to set it up.
 
 
+## Acknowledgements
+This plugin has been developed by [Quercus SEG](http://www.unex.es/investigacion/grupos/quercus) to federate the [Opendata Cáceres](http://opendata.caceres.es/) portal.
+
 ## License
-This plugin is published uuder the [GNU Affero General Public License (AGPL) v3.0](http://www.gnu.org/licenses/agpl-3.0.html)
+This plugin is published under the [GNU Affero General Public License (AGPL) v3.0](http://www.gnu.org/licenses/agpl-3.0.html)
