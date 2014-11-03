@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+  xmlns:time="http://www.w3.org/2006/time#"
+  xmlns:dct="http://purl.org/dc/terms/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:dcat="http://www.w3.org/ns/dcat#"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xmlns:tema="http://datos.gob.es/kos/sector-publico/sector/"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#">
+
+  <dcat:Catalog rdf:about="{-URL-CATALOG-}"> 
+	<dct:identifier>{-URL-CATALOG-}/federator.rdf</dct:identifier>
+	<dct:title xml:lang="{-LANGUAGE-}">{-TITLE-}</dct:title>
+	<dct:description xml:lang="{-LANGUAGE-}">{-DESCRIPTION-}</dct:description>
+	<dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">{-ISSUED-}</dct:issued> 
+	<dct:publisher rdf:resource="{-URL-PUBLISHER-}" />
+	<dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">@@SCRIPT-Date-update@@</dct:modified>
+	<dc:language>{-LANGUAGE-}</dc:language>
+	<dcat:themeTaxonomy rdf:resource="http://datos.gob.es/kos/sector-publico/sector/" />
+	<foaf:homepage rdf:resource="{-URL-CATALOG-}" />
+	<dct:license rdf:resource="{-URL-LICENSE-}" />

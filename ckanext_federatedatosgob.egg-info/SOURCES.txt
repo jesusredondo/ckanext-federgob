@@ -1,6 +1,7 @@
 setup.py
 ckanext/__init__.py
 ckanext/federatedatosgob/__init__.py
+ckanext/federatedatosgob/plugin.py
 ckanext_federatedatosgob.egg-info/PKG-INFO
 ckanext_federatedatosgob.egg-info/SOURCES.txt
 ckanext_federatedatosgob.egg-info/dependency_links.txt

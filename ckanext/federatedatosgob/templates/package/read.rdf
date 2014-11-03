@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:py="http://genshi.edgewall.org/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dcat="http://www.w3.org/ns/dcat#"
+  xmlns:dct="http://purl.org/dc/terms/"
+  xmlns:time="http://www.w3.org/2006/time#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xmlns:tema="http://datos.gob.es/kos/sector-publico/sector/">
+
+  <!--dataset_metadata-->
+  <dcat:Dataset rdf:about="${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}">
+    <dct:identifier>http://opendata.caceres.es/federator/${c.pkg_dict['name']}</dct:identifier>
+    <dct:title>${c.pkg_dict['name'].replace('-',' ')}</dct:title>
+
+    <dct:description>${c.pkg_dict['notes'].split(".",1)[0]+"." if c.pkg_dict['notes'] != None else "-"}</dct:description>
+
+    <py:for each="tag_dict in c.pkg_dict['tags']">
+        <dcat:theme rdf:resource="http://datos.gob.es/kos/sector-publico/sector/${ tag_dict['name'] }" />
+    </py:for>
+
+    <py:for each="tag_dict in c.pkg_dict['tags']">
+        <dcat:keyword>${ tag_dict["name"] }</dcat:keyword>
+    </py:for>
+
+    <dc:language>es</dc:language>
+    <dct:publisher rdf:resource="http://datos.gob.es/recurso/sector-publico/org/Organismo/L01100377" />
+    <dct:license rdf:resource="${c.pkg_dict['license_url'] if c.pkg_dict['license_title'] != None else 'http://www.opendefinition.org/licenses/cc-by'}" />
+    
+    <py:for each="rsc_dict in c.pkg_dict['resources']">
+      <dcat:distribution>
+        <dcat:Distribution> 
+        <dct:identifier>http://opendata.caceres.es/federator/${c.pkg_dict['name']}/${rsc_dict.get('name').lower().replace(' ','-')}</dct:identifier>
+        <dct:title>${rsc_dict.get('name')}</dct:title> 
+        <dcat:accessURL
+          rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">${ rsc_dict['url'] }</dcat:accessURL>
+        <dct:format>
+          <dct:IMT rdf:value="${{
+'api/sparql':'application/sparql-query',
+'SPARQL':'application/sparql-query',
+'CSV':'text/csv',
+'RDF':'text/turtle',
+'RDF-Turtle':'text/turtle',
+'RDF-N3':'text/n3',
+'RDF-XML':'application/rdf+xml',
+'JSON':'application/JSON',
+'PDF':'application/pdf',
+'XLS':'application/vnd.ms-excel',
+}.setdefault(rsc_dict.get('format'),'No_MIMEtype')}" rdfs:label="${rsc_dict.get('format')}" />
+        </dct:format>
+        </dcat:Distribution>
+      </dcat:distribution>
+    </py:for>
+
+  </dcat:Dataset>
+</rdf:RDF>
