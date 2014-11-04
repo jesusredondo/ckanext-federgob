@@ -104,7 +104,7 @@
 'XLSX':'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 'XML':'application/xml',
 'XML':'text/xml',
-'ZIP':'application/zip'',
+'ZIP':'application/zip',
 }.setdefault(rsc_dict.get('format'),'No_MIMEtype')}" rdfs:label="${rsc_dict.get('format')}" />
         </dct:format>
         </dcat:Distribution>
