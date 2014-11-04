@@ -61,8 +61,16 @@ print >>final_file,"\n"
 #################################################################
 
 # Get datasets in the catalog.
-response = urllib2.urlopen(url_catalog+'/api/3/action/package_list')
-assert response.code == 200 
+try:
+	response = urllib2.urlopen(url_catalog+'/api/3/action/package_list')
+except Exception, e:
+	print 'The catalog URL is not correct. Can not load CKAN API from:', url_catalog
+	print url_catalog+'/api/3/action/package_list','is not accessible.'
+	sys.exit(0)
+
+assert response.code == 200
+
+
 
 
 #Parse response
@@ -74,7 +82,14 @@ result = response_dict['result']
 
 for name in result:
 	print url_dataset_path+"/"+name+".rdf",
-	pageRDF = urllib2.urlopen(url_dataset_path+"/"+name+".rdf")
+
+	try:
+		pageRDF = urllib2.urlopen(url_dataset_path+"/"+name+".rdf")
+	except Exception, e:
+		print 'The dataset URL is not correct:', url_dataset_path
+		print 'Can not download rdf file:', url_dataset_path+"/"+name+".rdf"
+		sys.exit(0)
+
 
 	print >>final_file,"<dcat:dataset>"
 
