@@ -1,108 +1,109 @@
-ckanext-federatedatosgob
+ckanext-federgob
 ========================
 
 
-## What is federatedatosgob?
+## ¿Qué es FederGob?
 
-It is an extension for CKAN that eases the federation process of CKAN catalogs with the global catalog of Spain, [Datos.gob](http://www.datos.gob.es/).
+Es una extensión para CKAN que facilita el proceso de federación con [Datos.gob.es](http://www.datos.gob.es/), el catálogo de datos oficial de España.
 
-The official documentation to federate portals against [Datos.gob](http://www.datos.gob.es/) can be found here: [Federator manual](http://www.datos.gob.es/content/manual-de-uso-de-herramienta-federador). It’s recommendable to read the official document about how metadata should structure: [Norma Técnica de Interoperabilidad de Reutilización de Recursos de Información](https://www.boe.es/buscar/doc.php?id=BOE-A-2013-2380).
+La documentación oficial para federar portales contra [Datos.gob.es](http://www.datos.gob.es/) es la siguiente: [manual del Federador](http://www.datos.gob.es/content/manual-de-uso-de-herramienta-federador). Es recomendable leer la documentación oficial sobre cómo se deben estructurar los metadatos: [Norma Técnica de Interoperabilidad de Reutilización de Recursos de Información](https://www.boe.es/buscar/doc.php?id=BOE-A-2013-2380).
 
-This extension only supports RDF based federation. The original metadata created by CKAN is modified by this script, adapting it to the Norma Técnica de Interoperabilidad mentioned before. 
+Esta extensión sólo permite la federación mediante metadatos representados en RDF. Se modifican los metadatos originales proporcionados por CKAN para adecuarlos a la Norma Técnica de Interoperabilidad mencionada anteriormente.
 
-The main vocabulary to describe metadata is [DCAT](http://www.w3.org/TR/vocab-dcat/). [Datos.gob](http://www.datos.gob.es/) provides a [manual](http://datos.gob.es/sites/default/files/federador_-_manual_de_usuario.pdf) that includes a rdf/xml metadata template that is used as squeleton by this plugin. 
+El vocabulario principal para describir los metadatos es [DCAT](http://www.w3.org/TR/vocab-dcat/). [Datos.gob.es](http://www.datos.gob.es/) ofrece un [manual](http://datos.gob.es/sites/default/files/federador_-_manual_de_usuario.pdf) que incluye una plantilla rdf/xml que es utilizada como esqueleto para este plugin. 
 
-It is desirable to check [this presentation about Federator](http://www.w3.org/2013/share-psi/wiki/images/8/89/Share-PSI_FederationTool_v01_en_paper.pdf) and the [user manual](http://datos.gob.es/sites/default/files/federador_-_manual_de_usuario.pdf) to learn how to set up the Federator.
-
-
-## How does it work?
-
-By default CKAN generates rdf/xml metadata about every single dataset using DCAT vocabulary. 
-
-Federatedatosgob adequates this metadata to the Federator template (see annex I in the [Federator user manual]([http://datos.gob.es/sites/default/files/federador_-_manual_de_usuario_2.docx])). Additionally, metadata about the catalog and the portal is created, completing the metadata needed for the federation. 
-
-Federatedatosgob provides scripts to update the metadata periodically.
+Es recomendable revisar [esta presentación sobre el Federador](http://www.w3.org/2013/share-psi/wiki/images/8/89/Share-PSI_FederationTool_v01_en_paper.pdf) y el [manual del usuario](http://datos.gob.es/sites/default/files/federador_-_manual_de_usuario.pdf) para aprender cómo utilizar el Federador.
 
 
-## Prerequisites
+## ¿Cómo funciona?
 
-1. The CKAN version running the extension should be 2.0 or superior (hasn’t been tested with older versions).
-All the datasets in the CKAN catalog should have filled the tag field (etiqueta) using one of the values that appear in the second column of first table of the Anexo IV in the [Norma Técnica de Interoperabilidad de Reutilización de Recursos de Información](https://www.boe.es/buscar/doc.php?id=BOE-A-2013-2380).
+Por defecto CKAN genera metadatos en rdf/xml de cada dataset utilizando el vocabulario DCAT. 
 
-2. All the datasets must have a license in their license field, if not filled, the license [Creative Commons Attribution](http://www.opendefinition.org/licenses/cc-by) is taken by default.
+FederGob adecúa estos metadatos a los que consume el Federador de [Datos.gob.es](http://www.datos.gob.es/) (ver el anexo I en el [manual del usuario del Federador]([http://datos.gob.es/sites/default/files/federador_-_manual_de_usuario_2.docx])). Además, se crean metadatos sobre el propio portal, necesarios para completar el proceso de federación.
 
-3. The first sentence of each dataset description (everything before the first “.”) is used to fill the de metadata field “dcat:description”. So it would be a good idea to describe concisely the dataset in that first line. 
+FederGob incluye scripts para automatizar la generación de los metadatos periódicamente.
 
 
-##Limitations
+## Prerrequisitos
 
-1. It doesn’t support multi-valued fields for descriptions.
+1. La versión CKAN del catálogo en el que se instale el plugin debe ser la 2.0 o superior (no se ha testeado con versiones anteriores).
 
-2. This plugin has not been tested while using [ckanext-dcat](https://github.com/ckan/ckanext-dcat). Malfunctions could arise when both working.
+2. Todos los datasets del catálogo CKAN deben tener el campo etiqueta (tag) relleno con uno de los valores que aparecen en la segunda columna de la primera tabla del anexo IV en la [Norma Técnica de Interoperabilidad de Reutilización de Recursos de Información](https://www.boe.es/buscar/doc.php?id=BOE-A-2013-2380).
+
+3. Todos los datasets deben tener el campo licencia relleno. En el caso de que no esté relleno se tomará la licencia [Creative Commons Attribution](http://www.opendefinition.org/licenses/cc-by) por defecto.
+
+4. La primera frase de la descripción de cada dataset (todo lo que se encuentre antes del primer punto ".") se utilizará para rellenar el campo dcat:description. Por lo tanto sería recomendable que esta primera línea se utilice para describir el dataset brevemente. 
+
+
+## Limitaciones
+
+1. No soporta descripciones multi-valuadas. (Por ejemplo, descripciones en varios idiomas).
+
+2. Este plugin no se ha testeado en conjunto con [ckanext-dcat](https://github.com/ckan/ckanext-dcat), podría haber problemas si ambos estuvieran funcionando al unísono.
  
 
-## How to install federatedatosgob?
+## ¿Cómo instalar el FederGob?
 
-Copy the [plugin](https://github.com/jesusredondo/ckanext-federatedatosgob) to your ckan src folder (normally /usr/lib/ckan/default/src/).
+Copia el [plugin](https://github.com/jesusredondo/ckanext-federgob) a tu carpeta `src` (normalmente es: /usr/lib/ckan/default/src/).
 
-Install the plugin:
+Instalar el plugin:
 
-    cd ckanext-federatedatosgob
+    cd ckanext-federgob
     sudo python setup.py develop
 
-Restart Apache and make sure to add federatedatosgob to ckan.plugins in your config file.
+Asegurarse que `federgob está en la lista de plugins activos del fichero de configuración de CKAN y reiniciar Apache.
 
 
-## How to configure federatedatosgob with the Federator?
+## ¿Cómo configurar FederGob?
 
-Federatedatosgob must to be configured locally to create the metadata. Later, the Federator will read the metadata generated. 
+FederGob tiene que ser configurado en local para que cree los metadatos. Después el Federator [Datos.gob.es](http://www.datos.gob.es/) se encargará de leer la información generada.
 
-If you have problems with the installation, please create a new issue.
-
-
-### Local configuration
-
-These steps have to be completed to configure the creation of the metadata periodically.
-All commands must be run in the `.../ckanext-federatedatosgob/ckanext/federatedatosgob/FDG/` path.
+Si tienes problemas con la instalación, por favor crea un nuevo issue en el repositorio.
 
 
-#### Configure portal metadata
+### Configuración local
 
-Run the `config.py` script → `sudo python config.py` to configure the metadata of your portal. The fields that must be completed are:
-
-1. **{-URL-CATALOG-}** :  URL of the CKAN instance. Example: `http://opendata.caceres.es`.
-
-2. **{-URL-DATASET-}** : URL base of all datasets. Usually is the value is: **{-URL-CATALOG-}**/dataset. For example: `http://opendata.caceres.es/dataset`, another example would be `http://datahub.io/dataset` for `http://datahub.io`.
-
-3. **{-LANGUAGE-}** : Language of the whole catalog. It has to follow the RFC 1766 standard. Example value: `es`, `en` or `fr`.
-
-4. **{-TITLE-}** : Title of the catalog. Example: `Opendata Cáceres`.
-
-5. **{-DESCRIPTION-}** : Long textual description of the catalog.
-
-6. {-ISSUED-} :  Date when the catalog was created in [ISO-8601 standard](http://www.w3.org/TR/NOTE-datetime). Example: `2014-07-02T10:45:15`.
-
-7. **{-URL-PUBLISHER-}** : URL of the publishing organization.It has to follow the format established by the NTI. Check annex II C in the [Federator user manual](http://datos.gob.es/sites/default/files/federador_-_manual_de_usuario_2.docx). Example: `http://datos.gob.es/recurso/sector-publico/org/Organismo/L01100377`.
-
-8. **{-URL-LICENSE-}** : Link to the web page that describes the terms of use of the catalog. Example: `http://opendata.caceres.es/terminos`.
-
-If you manually edit the file `fields.conf` instead of using the script `config.py` you must run `merge_metadata.py` → `sudo python merge_metadata.py` to update the changes. 
-
-To test the metadata generation, run `federatedatosgob.py` →  `sudo python federatedatosgob.py`. If everything works fine, all the datasets in the catalog should be displayed and the metadata could be accessed in the url: **{-URL-CATALOG-}**/federator.rdf .
-
-#### Automatic updates
-
-As we have seen before, the metadata is generated each time `federatedatosgob.py` is run. To automate the update, `federatedatosgob.py` must be run periodically. [Cron](http://unixhelp.ed.ac.uk/CGI/man-cgi?crontab+5) can be used to run tasks in given intervals or at a given time, you should configure it to your updating preferences.
-
-Additionally, federatedatosgob includes a default method to configure [Cron](http://unixhelp.ed.ac.uk/CGI/man-cgi?crontab+5) each day at 00.00 a.m. To do so, simply run the script `auto_crontab.py` as root → `sudo python auto_crontab.py`.
-
-### External configuration: Configure Federator from Datos.gob
-
-The federator must read the metadata that is generated in the url: {-URL-CATALOG-}/federator.rdf. Follow the tutorials from datos.gob to set it up.
+Estos pasos permiten configurar la generación de los metadatos periódicamente. Todos los comandos tienen que correrse en la ruta: `.../ckanext-federgob/ckanext/federgob/FDG/`.
 
 
-## Acknowledgements
-This plugin has been developed by [Quercus SEG](http://www.unex.es/investigacion/grupos/quercus) to federate the [Opendata Cáceres](http://opendata.caceres.es/) portal.
+#### Configurar los metadatos del portal
 
-## License
-This plugin is published under the [GNU Affero General Public License (AGPL) v3.0](http://www.gnu.org/licenses/agpl-3.0.html)
+Para configurar los metadatos del portal hay que ejecutar el script `config.py` → `sudo python config.py`. Hay que rellenar los siguientes campos:
+
+1. **{-URL-CATALOG-}** : Es la URL del catálogo. Por ejemplo: `http://opendata.caceres.es`.
+
+2. **{-URL-DATASET-}** : Es la URL base donde se encuentran todos los datasets. Normalmente esta URL toma la forma: **{-URL-CATALOG-}**/dataset. Por ejemplo: `http://opendata.caceres.es/dataset`. Otro ejemplo sería `http://datahub.io/dataset` para `http://datahub.io`.
+
+3. **{-LANGUAGE-}** : Idioma del catálogo. Tiene que seguir el estándar RFC 1766. Por ejemplo: `es`, `en` o `fr`.
+
+4. **{-TITLE-}** : Título del catálogo. Ejemplo: `Opendata Cáceres`.
+
+5. **{-DESCRIPTION-}** : Descripción pormenorizada del catálogo.
+
+6. {-ISSUED-} : Fecha en la que se creó el catálogo, se debe utilizar el estándar [ISO-8601](http://www.w3.org/TR/NOTE-datetime). Por ejemplo: `2014-07-02T10:45:15`.
+
+7. **{-URL-PUBLISHER-}** : URL de la organización que publica los datos en el catálogo. Tiene que ser una URL que siga el formato establecido por el NTI. Para más información consultar el anexo II C del [manual del Federador](http://datos.gob.es/sites/default/files/federador_-_manual_de_usuario_2.docx). Por ejemplo: `http://datos.gob.es/recurso/sector-publico/org/Organismo/L01100377`.
+
+8. **{-URL-LICENSE-}** : URL de la página web donde se describen los términos de usos del catálogo. Por ejemplo: `http://opendata.caceres.es/terminos`.
+
+Si se edita manualmente el fichero `fields.conf` en lugar de utilizar el script `config.py` debes ejecutar `merge_metadata.py` → `sudo python merge_metadata.py` para que los cambios se hagan efectivos. 
+
+Se puede comprobar que la configuración ha sido correcta ejecutando el script que genera los metadatos: `federatedatosgob.py` →  `sudo python federatedatosgob.py`. Si todo ha sido satisfactorio, todos los datasets del catálogo se mostrarán por pantalla y se podrá acceder al fichero de metadatos en la URL: **{-URL-CATALOG-}**/federator.rdf .
+
+#### Automatizar la actualización
+
+Como se ha visto en el punto anterior, los metadatos se generan cada vez que se ejecuta el script `federatedatosgob.py`. Para automatizar la generación de metadatos se debe ejecutar periódicamente el script `federatedatosgob.py`. Se puede hacer uso de [Cron](http://unixhelp.ed.ac.uk/CGI/man-cgi?crontab+5) en Linux para planificar tareas periódicamente, se recomienda que se configure [Cron](http://unixhelp.ed.ac.uk/CGI/man-cgi?crontab+5) para que se ejecute `federatedatosgob.py` según las necesidades de actualización de cada portal.
+
+Adicionalmente, FederGob incluye un script que configura [Cron](http://unixhelp.ed.ac.uk/CGI/man-cgi?crontab+5)  por defecto para que `federatedatosgob.py` se ejecute cada día a las 00.00 a.m. Simplemente hay que ejecutar `auto_crontab.py` como root → `sudo python auto_crontab.py` para establecer la actualización diaria a las 00.00 a.m.
+
+### Configuración externa: Configurar el Federador del portal Datos.gob.es
+
+El federador debe leer los metadatos generados en la URL: {-URL-CATALOG-}/federator.rdf. Sigue el [manual oficial del Federador de Datos.gob.es](http://www.datos.gob.es/content/manual-de-uso-de-herramienta-federador) para configurarlo.
+
+
+## Reconocimientos
+Este plugin ha sido desarrollado por el grupo [Quercus SEG](http://www.unex.es/investigacion/grupos/quercus) para federar el portal [Opendata Cáceres](http://opendata.caceres.es/) portal.
+
+## Licencia
+Este plugin se publica bajo la licencia [GNU Affero General Public License (AGPL) v3.0](http://www.gnu.org/licenses/agpl-3.0.html)
+

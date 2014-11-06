@@ -1,7 +1,7 @@
 import ckan.plugins as p
 
 
-class federateDatosGobPlugin(p.SingletonPlugin):
+class federgobPlugin(p.SingletonPlugin):
 	p.implements(p.IAuthFunctions, inherit=True)
 	p.implements(p.IConfigurer)
 	def update_config(self, config):

@@ -4,7 +4,7 @@ import sys, os
 version = '1'
 
 setup(
-    name='ckanext-federatedatosgob',
+    name='ckanext-federgob',
     version=version,
     description="Extension to federate the catalog with datos.gob.",
     long_description='''
@@ -16,7 +16,7 @@ setup(
     url='http://opendata.caceres.es',
     license='CC-BY-4.0',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-    namespace_packages=['ckanext', 'ckanext.federatedatosgob'],
+    namespace_packages=['ckanext', 'ckanext.federgob'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
@@ -25,6 +25,6 @@ setup(
     entry_points='''
         [ckan.plugins]
         # Add plugins here, e.g.
-        federatedatosgob=ckanext.federatedatosgob.plugin:federateDatosGobPlugin
+        federgob=ckanext.federgob.plugin:federgobPlugin
     ''',
 )
