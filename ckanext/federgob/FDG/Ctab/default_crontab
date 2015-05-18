@@ -1,1 +1,1 @@
-0 0 * * * echo Log from `date`: >> @@-PATH-PLUGIN-@@/Logs/Log_crontab.txt 2>&1 ; python @@-PATH-PLUGIN-@@/federatedatosgob.py >> @@-PATH-PLUGIN-@@/logs/Log_crontab.txt 2>&1
+0 0 * * * echo Log from `date`: >> @@-PATH-PLUGIN-@@/Logs/Log_crontab.txt 2>&1 ; python @@-PATH-PLUGIN-@@/federatedatosgob.py >> @@-PATH-PLUGIN-@@/Logs/Log_crontab.txt 2>&1
