@@ -16,6 +16,9 @@
   <dcat:Dataset rdf:about="${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}">
     <dct:identifier>http://opendata.caceres.es/federator/${c.pkg_dict['name']}</dct:identifier>
     <dct:title>${c.pkg_dict['name'].replace('-',' ')}</dct:title>
+    
+    <dct:issued>${c.pkg_dict['metadata_created']}</dct:issued>
+    <dct:modified>${c.pkg_dict['metadata_modified']}</dct:modified>
 
     <dct:description>${c.pkg_dict['notes'].split(".",1)[0]+"." if c.pkg_dict['notes'] != None else "-"}</dct:description>
 
