@@ -13,20 +13,24 @@ import time
 from datetime import date, datetime
 import re
 import sys
+import os
 
+
+base_path = os.path.dirname( os.path.realpath( __file__ ) )
 
 url_catalog = 'URL-CATALOG' #Get info from fields.conf
 url_dataset_path = 'URL-DATASET' #Get info from fields.conf
-base_filename = 'base_catalog.rdf'
-output_filename = '../public/federator.rdf'
-logfile= 'Logs/log_federator'
+base_filename = os.path.join(base_path,'base_catalog.rdf')
+output_filename = os.path.join(base_path,'../public/federator.rdf')
+logfile = os.path.join(base_path,'Logs/log_federator')
+fields_conf = os.path.join(base_path,'fields.conf')
 
 def fixTags(line,stream) :
 	print >>stream, line.replace('<dct:title>','<dct:title xml:lang="es">').replace('<dct:description>','<dct:description xml:lang="es">'),
 
 def load_metadata() :
 	global url_catalog, url_dataset_path
-	fields_conf_file = open('fields.conf','r')
+	fields_conf_file = open(fields_conf,'r')
 	fields_lines = fields_conf_file.readlines()
 
 	for l in fields_lines :
