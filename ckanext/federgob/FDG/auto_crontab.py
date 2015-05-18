@@ -9,7 +9,7 @@ from subprocess import call
 
 
 #Modify default_crontab
-path_base = os.path.abspath('.')
+path_base = os.path.dirname( os.path.realpath( __file__ ) )
 path_crontab_default = os.path.join(path_base,'Ctab','default_crontab')
 path_crontab = os.path.join(path_base,'Ctab','Cron_auto')
 
