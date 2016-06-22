@@ -105,4 +105,4 @@ The federator must read the metadata that is generated in the url: {-URL-CATALOG
 This plugin has been developed by [Quercus SEG](http://www.unex.es/investigacion/grupos/quercus) to federate the [Opendata Cáceres](http://opendata.caceres.es/) portal.
 
 ## License
-This plugin is published under the [GNU Affero General Public License (AGPL) v3.0](http://www.gnu.org/licenses/agpl-3.0.html)
+This plugin is published under the [MIT](https://opensource.org/licenses/MIT)
