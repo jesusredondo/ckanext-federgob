@@ -105,5 +105,5 @@ El federador debe leer los metadatos generados en la URL: {-URL-CATALOG-}/federa
 Este plugin ha sido desarrollado por el grupo [Quercus SEG](http://www.unex.es/investigacion/grupos/quercus) para federar el portal [Opendata Cáceres](http://opendata.caceres.es/) portal.
 
 ## Licencia
-Este plugin se publica bajo la licencia [GNU Affero General Public License (AGPL) v3.0](http://www.gnu.org/licenses/agpl-3.0.html)
+Este plugin se publica bajo la licencia [MIT](https://opensource.org/licenses/MIT)
 
